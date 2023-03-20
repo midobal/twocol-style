@@ -1,6 +1,6 @@
 # TwoCol Style
 
-Two column LaTeX style template based on the [ACL Style template](https://github.com/acl-org/acl-style-files). An example of how to use this template can be found at the following [document](example.pdf).
+Custom two-columned LaTeX style template based on the [ACL Style template](https://github.com/acl-org/acl-style-files). An example of how to use this template can be found at the following [document](example.pdf).
 
 Shield: [![CC BY 4.0][cc-by-shield]][cc-by]
 
