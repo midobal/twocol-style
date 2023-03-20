@@ -1,0 +1,198 @@
+% This must be in the first 5 lines to tell arXiv to use pdfLaTeX, which is strongly recommended.
+\pdfoutput=1
+
+\documentclass[11pt]{article}
+\usepackage{../style/twocol}
+
+% Standard package includes.
+\usepackage{times}
+\usepackage{latexsym}
+
+% For proper rendering and hyphenation of words containing Latin characters (including in bib files).
+\usepackage[T1]{fontenc}
+
+% This assumes your files are encoded as UTF8.
+\usepackage[utf8]{inputenc}
+
+% This is not strictly necessary, and may be commented out,
+% but it will improve the layout of the manuscript,
+% and will typically save some space.
+\usepackage{microtype}
+
+% Custom packages.
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{url}
+\usepackage[nameinlink,capitalize]{cleveref}
+\usepackage{authblk}
+
+\title{TwoCol Style}
+\setlength{\affilsep}{0.05em}
+
+
+\begin{document}
+\author[1]{Jane Doe}
+\author[2]{John Doe}
+\affil[1]{Unknown Inc \\ Unknown location \\ \texttt{\small jdoe@uninc.net}}
+\affil[2]{Forgotten Knowledge University \\ Somewhere on Earth \\ \texttt{\small jdoe@fku.com}}
+\maketitle
+\begin{abstract}
+This document presents an example of how to use the \emph{TwoCol} style template.
+\end{abstract}
+
+\section{Introduction}
+This document presents an example of how to use the \emph{TwoCol} style template, which can be found at the \verb|style| directory (\texttt{twocol.sty}). Additional files for creating this document can be found at the \verb|tex| directory: the \LaTeX{} source of this document (\texttt{example.tex}) and an example bibliography (\texttt{example.bib}).
+
+\section{Engines}
+To produce a PDF file, pdf\LaTeX{} is strongly recommended (over original \LaTeX{} plus dvips+ps2pdf or dvipdf). Xe\LaTeX{} also produces PDF files, and is especially suitable for text in non-Latin scripts.
+
+\section{Preamble}
+The first line of the file must be
+\begin{quote}
+\begin{verbatim}
+\documentclass[11pt]{article}
+\end{verbatim}
+\end{quote}
+
+To load the style file:
+\begin{quote}
+\begin{verbatim}
+\usepackage{twocol}
+\end{verbatim}
+\end{quote}
+
+To use Times Roman, put the following in the preamble:
+\begin{quote}
+\begin{verbatim}
+\usepackage{times}
+\end{verbatim}
+\end{quote}
+(Alternatives like \emph{txfonts} or \emph{newtx} are also acceptable.)
+
+Please see the \LaTeX{} source of this document for comments on other packages that may be useful.
+
+Set the title and author using \verb|\title| and \verb|\author|. Within the author list, format multiple authors using \verb|\and| and \verb|\And| and \verb|\AND|; please see the \LaTeX{} source for examples.
+
+By default, the box containing the title and author names is set to the minimum of 5 cm. If you need more space, include the following in the preamble:
+\begin{quote}
+\begin{verbatim}
+\setlength\titlebox{<dim>}
+\end{verbatim}
+\end{quote}
+where \verb|<dim>| is replaced with a length. Do not set this length smaller than 5 cm.
+
+\section{Document Body}
+
+\subsection{Footnotes}
+Footnotes are inserted with the \verb|\footnote| command.\footnote{This is a footnote.}
+
+\subsection{Tables and figures}
+See \cref{tab:accents} for an example of a table and its caption.
+\textbf{Do not override the default caption sizes.}
+
+\begin{table}
+\caption{Example commands for accented characters, to be used in, \emph{e.g.}, Bib\TeX{} entries.}
+\label{tab:accents}
+\centering
+\begin{tabular}{lc}
+\hline
+\textbf{Command} & \textbf{Output}\\
+\hline
+\verb|{\"a}| & {\"a} \\
+\verb|{\^e}| & {\^e} \\
+\verb|{\`i}| & {\`i} \\ 
+\verb|{\.I}| & {\.I} \\ 
+\verb|{\o}| & {\o} \\
+\verb|{\'u}| & {\'u}  \\ 
+\verb|{\aa}| & {\aa}  \\\hline
+\end{tabular}
+\begin{tabular}{lc}
+\hline
+\textbf{Command} & \textbf{Output}\\
+\hline
+\verb|{\c c}| & {\c c} \\ 
+\verb|{\u g}| & {\u g} \\ 
+\verb|{\l}| & {\l} \\ 
+\verb|{\~n}| & {\~n} \\ 
+\verb|{\H o}| & {\H o} \\ 
+\verb|{\v r}| & {\v r} \\ 
+\verb|{\ss}| & {\ss} \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Hyperlinks}
+Users of older versions of \LaTeX{} may encounter the following error during compilation: 
+\begin{quote}
+\tt\verb|\pdfendlink| ended up in different nesting level than \verb|\pdfstartlink|.
+\end{quote}
+This happens when pdf\LaTeX{} is used and a citation splits across a page boundary. The best way to fix this is to upgrade \LaTeX{} to 2018-12-01 or later.
+
+\subsection{Citations}
+\begin{table}
+\caption{\label{citation-guide}
+Citation commands supported by the style file.
+The style is based on the \emph{natbib} package and supports all \emph{natbib} citation commands.}
+\centering
+\begin{tabular}{ll}
+\hline
+\textbf{Output} & \textbf{natbib command} \\
+\hline
+\citep{Doe23} & \verb|\citep| \\
+\citealp{Doe23} & \verb|\citealp| \\
+\citet{Doe23} & \verb|\citet| \\
+\citeyearpar{Doe23} & \verb|\citeyearpar| \\
+\hline
+\end{tabular}
+\end{table}
+
+\cref{citation-guide} shows the syntax supported by the style files. We encourage you to use the \emph{natbib} styles.
+You can use the command \verb|\citet| (cite in text) to get ``author (year)'' citations, like this citation to a paper by \citet{Doe23}.
+You can use the command \verb|\citep| (cite in parentheses) to get ``(author, year)'' citations \citep{Doe23}.
+You can use the command \verb|\citealp| (alternative cite without parentheses) to get ``author, year'' citations, which is useful for using citations within parentheses (e.g. \citealp{Doe23}).
+
+\subsection{References}
+If your own bib file is named \texttt{example.bib}, then placing the following before any appendices in your \LaTeX{} file will generate the references' section for you:
+\begin{quote}
+\begin{verbatim}
+\bibliography{example}
+\end{verbatim}
+\end{quote}
+
+For creating this document, we have selected the \emph{APA like} citation style. You can select your desired reference's style by editing the following line:
+\begin{quote}
+\begin{verbatim}
+\bibliographystyle{apalike}
+\end{verbatim}
+\end{quote}
+
+Please see \cref{sec:bibtex} for information on preparing Bib\TeX{} files.
+
+\subsection{Appendices}
+Use \verb|\appendix| before any appendix section to switch the section numbering over to letters. See \cref{sec:appendix} for an example.
+
+\section{Bib\TeX{} Files}
+\label{sec:bibtex}
+Unicode cannot be used in Bib\TeX{} entries, and some ways of typing special characters can disrupt Bib\TeX's alphabetization. The recommended way of typing special characters is shown in \cref{tab:accents}.
+
+It is recommended that Bib\TeX{} records contain DOIs or URLs when possible. Use the \verb|doi| field for DOIs and the \verb|url| field for URLs.
+If a Bib\TeX{} entry has a URL or DOI field, the paper title in the references' section will appear as a hyperlink to the paper, using the \emph{hyperref} \LaTeX{} package.
+
+
+\section*{Acknowledgements}
+The \emph{TwoCol} template is based on the \emph{ACL} style template. This document is based on \emph{Instructions for *ACL Proceedings}, which has been adapted by Steven Bethard, Ryan Cotterell and Rui Yan from the instructions for earlier ACL and NAACL proceedings, including those for ACL 2019 by Douwe Kiela and Ivan Vuli\'{c}, NAACL 2019 by Stephanie Lukin and Alla Roskovskaya, ACL 2018 by Shay Cohen, Kevin Gimpel, and Wei Lu, NAACL 2018 by Margaret Mitchell and Stephanie Lukin, Bib\TeX{} suggestions for (NA)ACL 2017/2018 from Jason Eisner, ACL 2017 by Dan Gildea and Min-Yen Kan, NAACL 2017 by Margaret Mitchell, ACL 2012 by Maggie Li and Michael White, ACL 2010 by Jing-Shin Chang and Philipp Koehn, ACL 2008 by Johanna D. Moore, Simone Teufel, James Allan, and Sadaoki Furui, ACL 2005 by Hwee Tou Ng and Kemal Oflazer, ACL 2002 by Eugene Charniak and Dekang Lin, and earlier ACL and EACL formats written by several people, including John Chen, Henry S. Thompson and Donald Walker. Additional elements were taken from the formatting instructions of the \emph{International Joint Conference on Artificial Intelligence} and the \emph{Conference on Computer Vision and Pattern Recognition}.
+
+\appendix
+\section{Example Appendix}
+\label{sec:appendix}
+This is an appendix.
+
+
+\bibliographystyle{apalike}
+\bibliography{example}
+
+\end{document}
